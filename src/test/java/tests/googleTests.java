@@ -34,6 +34,29 @@ public class googleTests {
     }
 
     @Test
+    @DisplayName("Проверка операций с целыми числами")
+    public void testKeys1() {
+        driver.findElement(By.name("q")).click();
+        driver.findElement(By.name("q")).clear();
+        driver.findElement(By.name("q")).sendKeys("Calc");
+        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr/td/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[4]/td/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[5]/td[4]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[4]/td[2]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr/td[2]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[3]/td[4]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[4]/td[3]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[4]/td[4]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[3]/td/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[5]/td/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[2]/td[4]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[3]/td[2]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[5]/td[3]/div/div")).click();
+        assertEquals("1",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
+    }
+
+    @Test
     @DisplayName("Проверка деления на ноль")
     public void testKeys2(){
         driver.findElement(By.name("q")).click();
@@ -46,6 +69,14 @@ public class googleTests {
         driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[5]/td[3]/div/div")).click();
         assertEquals("Infinity",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
     }
+    @Test
+    @DisplayName("Проверка ошибки при отсутствии значения")
+    public void testKeys3() {
+
+    }
+
+
+
 
     @AfterAll
     public static void tearDown()  {
