@@ -1,10 +1,7 @@
 package tests;
 //import java.util.regex.Pattern;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,11 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class googleTests {
     private static WebDriver driver;
     private static String baseUrl;
-    private boolean acceptNextAlert = true;
-    private StringBuffer verificationErrors = new StringBuffer();
 
-    @BeforeAll
-    public static void setUp(){
+
+    @BeforeEach
+    public void setUp(){
         System.setProperty("webdriver.chrome.driver","C:\\webdrivers\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
@@ -36,8 +32,6 @@ public class googleTests {
     @Test
     @DisplayName("Проверка операций с целыми числами")
     public void testKeys1() {
-        driver.findElement(By.name("q")).click();
-        driver.findElement(By.name("q")).clear();
         driver.findElement(By.name("q")).sendKeys("Calc");
         driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
         driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr/td/div/div")).click();
@@ -54,13 +48,12 @@ public class googleTests {
         driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[3]/td[2]/div/div")).click();
         driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[5]/td[3]/div/div")).click();
         assertEquals("1",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
+
     }
 
     @Test
     @DisplayName("Проверка деления на ноль")
     public void testKeys2(){
-        driver.findElement(By.name("q")).click();
-        driver.findElement(By.name("q")).clear();
         driver.findElement(By.name("q")).sendKeys("Calc");
         driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
         driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[3]/td[3]/div/div")).click();
@@ -68,12 +61,18 @@ public class googleTests {
         driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[5]/td/div/div")).click();
         driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[5]/td[3]/div/div")).click();
         assertEquals("Infinity",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
+
     }
     @Test
     @DisplayName("Проверка ошибки при отсутствии значения")
     public void testKeys3() {
-
-    }
+        driver.findElement(By.name("q")).sendKeys("Calc");
+        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table/tbody/tr[2]/td[2]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr/td[2]/div/div")).click();
+        driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div[3]/div/table[2]/tbody/tr[5]/td[3]/div/div")).click();
+        assertEquals("Error",driver.findElement(By.cssSelector("span[jsname='VssY5c']")).getText());
+            }
 
 
 
